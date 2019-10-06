@@ -23,11 +23,12 @@ class _SIformState extends State<SIform>{
   Widget build(BuildContext context) {
     
     return Scaffold(
+      //resizeToAvoidBottomPadding:false ,
       appBar: AppBar(
         title: Text("Simple interst App"),
       ),
       body: Container(
-        child: Column(
+        child: ListView(
           children: <Widget>[
            Padding(
              padding: EdgeInsets.only(top:10.0,bottom: 10.0),
@@ -73,25 +74,50 @@ class _SIformState extends State<SIform>{
             ),
             ),
             Container(width: 10.0,),
-              /*Expanded(child: 
-            DropdownButton<String>(
-                items: _currencies.map((String dropdownStringItems){
-                  return DropdownMenuItem(
-                    value: dropdownStringItems,
-                    child: Text(dropdownStringItems),
-                  );
-                }).toList(),
-                value: 'Rupees',
-                onChanged: (String newvalueselected){
-                  setState(() {
-                    this.currentvalue=newvalueselected;
-                  });
-                },
-            ),
-            ),*/
+         Expanded(child: DropdownButton<String>(
+  items: _currencies.map((String dropDownStringItem){
+    return DropdownMenuItem<String>(
+      value: dropDownStringItem,
+      child:Text(dropDownStringItem),
+    );
+  }).toList(),
+  onChanged: (String newselectedvalue){
+    setState(() {
+      this.currentvalue=newselectedvalue;
+    });
+  },
+  value: currentvalue,
+
+),),
+
                ],
-             ))
-          ],
+             
+             )
+             ),
+   Padding(
+     padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
+     child: Row(
+      children: <Widget>[
+        Expanded(
+          child: RaisedButton(
+            child: Text('Calculate'),
+            onPressed: (){
+
+            },
+          ),
+        ),
+        Expanded(
+          child: RaisedButton(
+            child: Text('Reset'),
+            onPressed: (){
+
+            },
+          ),
+        )
+
+      ],
+    ))
+             ],
         ),
       ),
 
