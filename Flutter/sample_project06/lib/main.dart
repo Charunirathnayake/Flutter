@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 void main(){
 runApp(
   MaterialApp(
+    debugShowCheckedModeBanner:false,
+    theme: ThemeData(
+      primaryColor: Colors.indigo,
+      accentColor: Colors.indigoAccent,
+      brightness: Brightness.dark,
+    ),
     title: "Simple Interest App",
     home: SIform(),
   )
@@ -21,6 +27,7 @@ class _SIformState extends State<SIform>{
 
   @override
   Widget build(BuildContext context) {
+    TextStyle textStyle=Theme.of(context).textTheme.title;
     
     return Scaffold(
       //resizeToAvoidBottomPadding:false ,
@@ -33,9 +40,11 @@ class _SIformState extends State<SIform>{
            Padding(
              padding: EdgeInsets.only(top:10.0,bottom: 10.0),
              child:TextField(
+               style: textStyle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Principal',
+                labelStyle: textStyle,
                 hintText: 'Enter principal EX:120000',
                 border: OutlineInputBorder(
                   borderRadius:BorderRadius.circular(5.0)
@@ -47,9 +56,11 @@ class _SIformState extends State<SIform>{
            Padding(
              padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
              child:TextField(
+               style: textStyle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Rate of interest',
+                labelStyle: textStyle,
                 hintText: 'In percent',
                 border: OutlineInputBorder(
                   borderRadius:BorderRadius.circular(5.0)
@@ -63,8 +74,10 @@ class _SIformState extends State<SIform>{
               child:Row(
                children: <Widget>[
                 Expanded(child:  TextField(
+                  style: textStyle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                labelStyle: textStyle,
                 labelText: 'Term',
                 hintText: 'Time in years',
                 border: OutlineInputBorder(
@@ -100,7 +113,9 @@ class _SIformState extends State<SIform>{
       children: <Widget>[
         Expanded(
           child: RaisedButton(
-            child: Text('Calculate'),
+            color: Theme.of(context).primaryColorDark,
+            textColor: Theme.of(context).primaryColorLight,
+            child: Text('Calculate',),
             onPressed: (){
 
             },
@@ -108,7 +123,9 @@ class _SIformState extends State<SIform>{
         ),
         Expanded(
           child: RaisedButton(
-            child: Text('Reset'),
+            color: Theme.of(context).accentColor,
+            textColor: Theme.of(context).primaryColorDark,
+            child: Text('Reset',),
             onPressed: (){
 
             },
