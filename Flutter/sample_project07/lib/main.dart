@@ -47,6 +47,7 @@ class _SIformState extends State<SIform>{
            Padding(
              padding: EdgeInsets.only(top:10.0,bottom: 10.0),
              child:TextFormField(
+               
                validator: (String value){
                  if(value.isEmpty){
                    return 'Plaese enter principal amount';
@@ -56,6 +57,8 @@ class _SIformState extends State<SIform>{
                style: textStyle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                errorStyle: TextStyle(color: Colors.yellowAccent,
+                fontSize: 15),
                 labelText: 'Principal',
                 labelStyle: textStyle,
                 hintText: 'Enter principal EX:120000',
@@ -78,6 +81,7 @@ class _SIformState extends State<SIform>{
                style: textStyle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                errorStyle: TextStyle(fontSize: 15.0,color: Colors.yellowAccent),
                 labelText: 'Rate of interest',
                 labelStyle: textStyle,
                 hintText: 'In percent',
@@ -102,6 +106,7 @@ class _SIformState extends State<SIform>{
                   style: textStyle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                errorStyle: TextStyle(color: Colors.yellowAccent,fontSize: 15.0),
                 labelStyle: textStyle,
                 labelText: 'Term',
                 hintText: 'Time in years',
@@ -143,7 +148,8 @@ class _SIformState extends State<SIform>{
             child: Text('Calculate',),
             onPressed: (){
                     setState(() {
-                      this.displayresult=_calculateTotalReturn(); 
+                      if(_formKey.currentState.validate()){
+                      this.displayresult=_calculateTotalReturn(); }
                     });
             },
           ),
