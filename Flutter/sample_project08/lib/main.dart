@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:sample_project08/screens/Screen.dart';
 void main(){
   runApp(myapp());
 }
@@ -8,12 +8,13 @@ void main(){
   Widget build(BuildContext context) {
     
     return MaterialApp(
-      title: Notekeeper,
+      debugShowCheckedModeBanner: false,
+      title: 'Notekeeper',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       
       ),
-      home: ,
+      home: NoteList(),
     );
   }
 
