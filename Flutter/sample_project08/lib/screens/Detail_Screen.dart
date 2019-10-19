@@ -20,7 +20,9 @@ class Detail_Screen_State extends State<Detail_Screen>{
         title: Text('Edit Note'),
 
       ),
-      body: ListView(children: <Widget>[
+      body:Padding( 
+        padding: EdgeInsets.only(top: 15.0,bottom: 15.0,left: 10.0,right: 10.0),
+      child:ListView(children: <Widget>[
         ListTile(
           title: DropdownButton<String>(
             items:_priyority.map(
@@ -43,7 +45,9 @@ class Detail_Screen_State extends State<Detail_Screen>{
           
           
         ),
-        TextField(
+        Padding(
+        padding: EdgeInsets.only(top: 15.0,bottom: 15.0),
+      child:  TextField(
           controller: titlecontroller,
           style: textStyle,
           decoration: InputDecoration(
@@ -59,8 +63,10 @@ class Detail_Screen_State extends State<Detail_Screen>{
              debugPrint("input"); 
             });
           },
-        ),
-    TextField(
+        ),),
+   Padding(
+     padding: EdgeInsets.only(top: 15.0,bottom: 15.0),
+   child: TextField(
           controller: descriptioncontroller,
           style: textStyle,
           decoration: InputDecoration(
@@ -76,8 +82,10 @@ class Detail_Screen_State extends State<Detail_Screen>{
              debugPrint("input"); 
             });
           },
-        ),
-Row(
+        ),),
+        Padding(
+          padding: EdgeInsets.only(top: 15.0,bottom: 15.0),
+child:Row(
 children: <Widget>[
   Expanded(
     child: RaisedButton(
@@ -116,7 +124,9 @@ Expanded(
 ],
   
 )
-      ],),
+)
+
+      ],),)
       )
     ;
   }
