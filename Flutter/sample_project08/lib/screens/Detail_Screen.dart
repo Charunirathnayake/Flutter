@@ -9,8 +9,11 @@ class Detail_Screen extends StatefulWidget{
 }
 class Detail_Screen_State extends State<Detail_Screen>{
   static var _priyority=['High','Low'];
+  TextEditingController titlecontroller=TextEditingController();
+  TextEditingController descriptioncontroller=TextEditingController();
   @override
   Widget build(BuildContext context) {
+    TextStyle textStyle=Theme.of(context).textTheme.title;
     
     return Scaffold(
       appBar: AppBar(
@@ -28,8 +31,91 @@ class Detail_Screen_State extends State<Detail_Screen>{
                 value: dropDownStringItems,);
               }
             ).toList() ,
+            style: textStyle,
+            value: 'Low',
+            onChanged: (valueselected){
+              setState(() {
+                debugPrint ("$valueselected");
+                
+              });
+            },
           ),
-        )
+          
+          
+        ),
+        TextField(
+          controller: titlecontroller,
+          style: textStyle,
+          decoration: InputDecoration(
+            labelText: 'Title',
+            labelStyle: textStyle,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            )
+            
+          ),
+          onChanged: (value){
+            setState(() {
+             debugPrint("input"); 
+            });
+          },
+        ),
+    TextField(
+          controller: descriptioncontroller,
+          style: textStyle,
+          decoration: InputDecoration(
+            labelText: 'Description',
+            labelStyle: textStyle,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            )
+            
+          ),
+          onChanged: (value){
+            setState(() {
+             debugPrint("input"); 
+            });
+          },
+        ),
+Row(
+children: <Widget>[
+  Expanded(
+    child: RaisedButton(
+      color: Theme.of(context).primaryColorDark,
+      textColor: Theme.of(context).primaryColorLight,
+      child: Text(
+        'Save',textScaleFactor:1.5,
+      ),
+      onPressed: (){
+        setState(() {
+          debugPrint("Save Button Clicked");
+        });
+      },
+    ),
+
+  ),
+Container(
+width: 5.0,
+),
+Expanded(
+    child: RaisedButton(
+      color: Theme.of(context).primaryColorDark,
+      textColor: Theme.of(context).primaryColorLight,
+      child: Text(
+        'Delete',textScaleFactor:1.5,
+      ),
+      onPressed: (){
+        setState(() {
+          debugPrint("Delete Button Clicked");
+        });
+      },
+    ),
+
+  )
+
+],
+  
+)
       ],),
       )
     ;

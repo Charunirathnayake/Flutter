@@ -16,7 +16,7 @@ void main(){
         primarySwatch: Colors.deepPurple,
       
       ),
-      home: NoteList(),
+      home: Detail_Screen(),
     );
   }
 
