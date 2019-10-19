@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project08/screens/Detail_Screen.dart';
 
 class NoteList extends StatefulWidget{
+  
   @override
   State<StatefulWidget> createState() {
   
@@ -11,9 +13,9 @@ class NoteList extends StatefulWidget{
 
 class NoteListState extends State<NoteList>{
   int count=0;
+  
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
     appBar: AppBar(
       title: Text('Notes'),
@@ -22,6 +24,7 @@ class NoteListState extends State<NoteList>{
 
 onPressed: (){
 debugPrint('fab print');
+navigateToDetail('Edit Note');
 },
 
 
@@ -49,10 +52,17 @@ return ListView.builder(
         title: Text('Dummy title',style: titleStyle,),
         subtitle: Text('Dummy date'),
         trailing: Icon(Icons.delete,color:Colors.grey),
+        onTap: (){
+          navigateToDetail('Add note');
+        },
       ),
     )
  ; },
 );
-
+}
+void navigateToDetail(String title){
+  Navigator.push(context, MaterialPageRoute(builder: (context){
+            return Detail_Screen(title);
+          }));
 }
 }

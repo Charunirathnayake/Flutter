@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sample_project08/screens/Screen.dart';
 class Detail_Screen extends StatefulWidget{
+  String appbartitle;
+  Detail_Screen(this.appbartitle);
   @override
   State<StatefulWidget> createState() {
     
-    return Detail_Screen_State();
+    return Detail_Screen_State(this.appbartitle);
   }
 
 }
@@ -11,13 +14,23 @@ class Detail_Screen_State extends State<Detail_Screen>{
   static var _priyority=['High','Low'];
   TextEditingController titlecontroller=TextEditingController();
   TextEditingController descriptioncontroller=TextEditingController();
+  String appbartitle;
+  Detail_Screen_State(this.appbartitle);
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle=Theme.of(context).textTheme.title;
     
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: (){
+        movetolastscreen();
+      },
+   child: Scaffold(
       appBar: AppBar(
-        title: Text('Edit Note'),
+        title: Text('appbartitle'),
+        leading: IconButton(icon: Icon(Icons.arrow_back),
+        onPressed: (){
+          movetolastscreen();
+        },),
 
       ),
       body:Padding( 
@@ -128,7 +141,10 @@ Expanded(
 
       ],),)
       )
-    ;
+    );
+  }
+  void movetolastscreen(){
+    Navigator.pop(context);
   }
 
 }
