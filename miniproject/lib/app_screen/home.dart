@@ -30,11 +30,11 @@ class Home extends StatelessWidget{
 
       
         
-      Container(
+      /*Container(
         margin: EdgeInsets.only(top:150.0),
         child: JumpingText('Loading...',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w900,color:Colors.white,decorationColor: Colors.transparent,decorationStyle:TextDecorationStyle.dashed),
           ),
-      ),
+      ),*/
       
       
               Container(child: SizedBox(height: 12.0,width:12.0,)),

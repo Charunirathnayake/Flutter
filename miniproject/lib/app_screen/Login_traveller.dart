@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:miniproject/app_screen/auth_guide.dart';
+import 'package:miniproject/app_screen/auth_traveller.dart';
 import 'package:miniproject/app_screen/cur_nav_bar.dart';
-import 'package:miniproject/app_screen/googlesignin_guide.dart';
+import 'package:miniproject/app_screen/cur_nav_bar_traveller.dart';
 import 'package:miniproject/app_screen/search.dart';
-import 'signup.dart';
+import 'package:miniproject/app_screen/signup_traveller.dart';
 import 'recover.dart';
-import 'googlesingin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
+import 'googlesingin.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 
 //sketch of the login page
-class LoginInterface extends StatelessWidget {
+class LoginInterface_traveller extends StatelessWidget {
   /*LoginInterface({@required this.auth});
   final authbase auth;
 
@@ -27,21 +25,14 @@ Future <void> _signInWithGoogle()async{
       print(e.toString());
     }
   }*/
-  
 
   
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Loginpage(),
+      body:Loginpage_traveller(),
       appBar: AppBar(
-       /* actions: <Widget>[
-          IconButton(icon: Icon(
-            Icons.offline_pin
-          ),
-           onPressed: onSignout)
-        ],*/
         title: Text(
           'Tour Guide',
           style: TextStyle(fontSize: 20.0),
@@ -52,27 +43,25 @@ Future <void> _signInWithGoogle()async{
   }
 }
 
-class Loginpage extends StatefulWidget {
+class Loginpage_traveller extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return Loginpage_state();
+    return Loginpage_traveller_state();
   }
 }
 
-class Loginpage_state extends State<Loginpage> {
-  
+class Loginpage_traveller_state extends State<Loginpage_traveller> {
 
-
-final FirebaseAuth _authguide = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 //facebook signin
-Future<FirebaseUser> _signinwithfacebookguide() async{
+Future<FirebaseUser> _signinwithfacebook() async{
 var facebookLogin=FacebookLogin();
-var resultguide= await facebookLogin.logInWithReadPermissions(['public_profile']);
-debugPrint(resultguide.status.toString());
+var result= await facebookLogin.logInWithReadPermissions(['public_profile']);
+debugPrint(result.status.toString());
 
-if(resultguide.accessToken !=null){
-final authresult=await _authguide.signInWithCredential(FacebookAuthProvider.getCredential(
-  accessToken:resultguide.accessToken.token,
+if(result.accessToken !=null){
+final authresult=await _auth.signInWithCredential(FacebookAuthProvider.getCredential(
+  accessToken:result.accessToken.token,
 ));
 return authresult.user;
                     
@@ -84,8 +73,6 @@ return authresult.user;
 
 
 }
-
-  
 
   
 
@@ -222,7 +209,7 @@ return authresult.user;
                 onTap: () {
                   Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) =>(Signup()),
+                            MaterialPageRoute(builder: (context) =>(Signup_traveller()),
                           )); 
   
                 },
@@ -254,14 +241,19 @@ return authresult.user;
                   if(res==true){
                     Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) =>BottomNavBar(),
+                          MaterialPageRoute(builder: (context) =>BottomNavBar_traveller(),
+
                         ));
+                        /*setState(() {
+                          
+                          _formkey.currentState.reset();
+                        });*/
 
                   }
                   else{
                     Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) =>LoginInterface(),
+                          MaterialPageRoute(builder: (context) =>LoginInterface_traveller(),
                         ));
 
                   }
@@ -321,14 +313,13 @@ return authresult.user;
           Padding(
             padding: EdgeInsets.only(left: 20.0,right: 20.0),
             child: OutlineButton(
-              onPressed: ()async{
-           bool res_guide=await AuthProvider_guide().googlesignin();
-           if(!res_guide)
+              onPressed:/*_signInWithGoogle()*/
+              ()async{
+           bool res=await AuthProvider().googlesignin();
+           if(!res)
            print('ERROR LOGGING WITH GOOGLE');
               }
-             ,
-    
-              
+              ,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
                 side: BorderSide(color: Colors.white),
@@ -355,7 +346,7 @@ return authresult.user;
            Padding(
             padding: EdgeInsets.only(left: 20.0,right: 20.0),
             child: OutlineButton(
-              onPressed: _signinwithfacebookguide,
+              onPressed: _signinwithfacebook,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
                 side: BorderSide(color: Colors.white),
